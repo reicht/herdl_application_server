@@ -2,11 +2,12 @@ class Api::VotesController < ApplicationController
     protect_from_forgery with: :null_session
 
   def index
-    render json: Vote.all
+    entry = Entry.find(params.fetch(:entry_id))
+    render json: entry.votes
   end
 
   def show
-    render json: Vote.find(params.fetch(:id))
+    render json: Entry.find(params.fetch(:id))
   rescue ActiveRecord::RecordNotFound
     render json: { message: "Not found", status: 404 }, status: 404
   end
