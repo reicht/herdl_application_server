@@ -8,7 +8,7 @@
 
 10.times do
   e = Entry.create(title: Faker::Company.name, url: Faker::Internet.url,
-                    image_url: Faker::Avatar.image("my-own-slug", "200x200"),
+                    image_url: Faker::Avatar.image("fake-background-pic", "200x200"),
                     zip: Faker::Address.zip, body: Faker::Hipster.paragraph)
 
     rand(15..25).times do
