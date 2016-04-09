@@ -2,9 +2,9 @@ class Api::EntriesController < ApplicationController
   skip_before_action :verify_authenticity_token
   protect_from_forgery with: :null_session
 
-  skip_before_filter :verify_authenticity_token
-  before_filter :cors_preflight_check
-  after_filter :cors_set_access_control_headers
+  # skip_before_filter :verify_authenticity_token
+  # before_filter :cors_preflight_check
+  # after_filter :cors_set_access_control_headers
 
   def cors_set_access_control_headers
     headers['Access-Control-Allow-Origin'] = '*'
@@ -30,9 +30,7 @@ class Api::EntriesController < ApplicationController
   end
 
   def create
-    entry = Entry.create(title: params[:title], url: params[:url],
-                        image_url: params[:image_url], zip: params[:zip],
-                        body: params[:body])
+    entry = Entry.create(good_params)
     if entry.save
         render json: {
           status: 200,
@@ -76,6 +74,10 @@ class Api::EntriesController < ApplicationController
   good_params = good_params.merge(zip: params[:zip]) unless params[:zip].nil?
   good_params = good_params.merge(body: params[:body]) unless params[:body].nil?
   good_params
+  end
+
+  def good_params
+    params.require(:newHerdl).permit(:title, :image_url, :body, :url, :zip)
   end
 
 end

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  match 'api/entries', to: 'api/entries#create', via: [:options]
-  match 'api/entries/:id/votes', to: 'api/votes#create', via: [:options]
+  # match 'api/entries', to: 'api/entries', via: [:options]
+  # match 'api/entries/:id/votes', to: 'api/votes', via: [:options]
 
   namespace :api do
     resources :entries do
