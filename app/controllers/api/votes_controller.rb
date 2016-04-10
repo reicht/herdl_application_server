@@ -40,7 +40,7 @@ class Api::VotesController < ApplicationController
   end
 
   def destroy
-    vote = Vote.last
+    vote = Vote.where(entry_id: params[:entry_id]).last
     vote.destroy
     render json: { message: "Vote Deleted" }
   rescue ActiveRecord::RecordNotFound
