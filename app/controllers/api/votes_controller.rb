@@ -13,7 +13,7 @@ class Api::VotesController < ApplicationController
   end
 
   def create
-    vote = Vote.create(entry_id: params[:entry_id], feels: params[:feels])
+    vote = Vote.create(entry_id: params[:entry_id], up_vote: params[:up_vote], down_vote: params[:down_vote])
     if vote.save
       render json: {
         status: 200,
