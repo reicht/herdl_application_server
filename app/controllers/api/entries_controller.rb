@@ -2,23 +2,6 @@ class Api::EntriesController < ApplicationController
   skip_before_action :verify_authenticity_token
   protect_from_forgery with: :null_session
 
-  # skip_before_filter :verify_authenticity_token
-  # before_filter :cors_preflight_check
-  # after_filter :cors_set_access_control_headers
-
-  def cors_set_access_control_headers
-    headers['Access-Control-Allow-Origin'] = '*'
-    headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
-    headers['Access-Control-Max-Age'] = "1728000"
-  end
-
-  def cors_preflight_check
-    headers['Access-Control-Allow-Origin'] = '*'
-    headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
-    headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Prototype-Version'
-    headers['Access-Control-Max-Age'] = '1728000'
-  end
-
   def index
     render json: Entry.all
   end
@@ -32,16 +15,16 @@ class Api::EntriesController < ApplicationController
   def create
     entry = Entry.create(good_params)
     if entry.save
-        render json: {
-          status: 200,
-          message: "Successfully created Entry.",
-          user: entry
-        }.to_json
+      render json: {
+        status: 200,
+        message: "Successfully created Entry.",
+        entry: entry
+      }.to_json
     else
       render json: {
         status: 400,
         message: "Failed to create Entry.",
-        user: entry
+        entry: entry
       }.to_json
     end
   end
@@ -77,7 +60,11 @@ class Api::EntriesController < ApplicationController
   end
 
   def good_params
-    params.require(:newHerdl).permit(:title, :image_url, :body, :url, :zip)
+    unless  params[:newHerdl].nil?
+      params.require(:newHerdl).permit(:title, :image_url, :body, :url, :zip)
+    else
+      update_params
+    end
   end
 
 end
