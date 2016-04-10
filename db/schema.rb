@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160409190250) do
+ActiveRecord::Schema.define(version: 20160410192503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20160409190250) do
     t.string   "image_url"
     t.string   "zip"
     t.string   "body"
-    t.integer  "votes_count", default: 0
+    t.integer  "votes_count"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 20160409190250) do
     t.integer  "entry_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "up_vote"
+    t.integer  "down_vote"
   end
 
 end
