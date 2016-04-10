@@ -71,19 +71,6 @@ e = Entry.create(title: "Banger's Sausage House & Beer Garden",
                 Vote.create(entry_id: e.id, up_vote: 0, down_vote: 1)
               end
 
-10.times do
-  e = Entry.create(title: Faker::Company.name, url: Faker::Internet.url,
-                    image_url: Faker::Avatar.image("fake-background-pic", "200x200"),
-                    zip: Faker::Address.zip, body: Faker::Hipster.paragraph)
-
-                    rand(15..25).times do
-                      Vote.create(entry_id: e.id, up_vote: 1, down_vote: 0)
-                    end
-                    rand(15..25).times do
-                      Vote.create(entry_id: e.id, up_vote: 0, down_vote: 1)
-                    end
-end
-
 e = Entry.create(title: "Bouldin Creek Cafe",
               url: "http://bouldincreekcafe.com/",
               image_url: "https://vegansurvivalguidetx.files.wordpress.com/2014/04/front-of-bouldin.jpg",
