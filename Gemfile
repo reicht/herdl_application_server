@@ -53,3 +53,5 @@ group :production do
   gem 'puma'
 end
 gem 'faker'
+gem 'rails_admin'
+gem 'bootstrap', '~> 4.0.0.alpha3'
