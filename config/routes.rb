@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'dashboard#index'
+  root  'dashboard#index'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   namespace :api do
