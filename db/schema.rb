@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20160409190250) do
     t.string   "image_url"
     t.string   "zip"
     t.string   "body"
+    t.string   "category"
     t.integer  "votes_count"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
