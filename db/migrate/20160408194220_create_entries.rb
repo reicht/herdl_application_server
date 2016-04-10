@@ -6,6 +6,7 @@ class CreateEntries < ActiveRecord::Migration
       t.string :image_url
       t.string :zip
       t.string :body
+      t.string :category
       t.integer :votes_count
 
       t.timestamps null: false
